@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/Layout"
+	xmlns:sec="https://www.thymleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="utf-8">
+<title>index</title>
+<link rel="stylesheet" type="text/css"
+	href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css" />
+<script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-sm navbar-dark bg-info">
+		<!-- Brand -->
+		 
+		<a class="navbar-brand" href="cinemas"></a>
+
+		<!-- Links -->
+		<ul class="navbar-nav">
+			<li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
+
+			
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Cinema</a>
+				<div class="dropdown-menu">
+					
+					 <a class="dropdown-item" th:href="@{cinemas}">Chercher</a>
+				</div></li>
+				<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbardrop"
+				data-toggle="dropdown">Film</a>
+				<div class="dropdown-menu">
+					<a sec:authorize="hasRole('ROLE_ADMIN')" class= "dropdown-item" th:href="@{formFilm}">Ajouter</a> 
+					<a class="dropdown-item" th:href="@{film}">Chercher</a>
+				</div></li>
+
+							
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbardrop"
+				data-toggle="dropdown">Projection</a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" th:href="@{formProjection}">Ajouter</a> <a
+						class="dropdown-item" th:href="@{projection}">Chercher</a>
+				</div></li>
+				
+				
+		<!--  	<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbardrop"
+				data-toggle="dropdown">Ticket</a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" th:href="@{formTicket}">Ajouter</a> 
+				</div></li>
+				-->
+				
+				<!-- Dropdown 
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbardrop"
+				data-toggle="dropdown">Place</a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" th:href="@{formPlace}">Ajouter</a> <a
+						class="dropdown-item" href="#">Chercher</a>
+				</div></li>
+				-->
+				<!-- Dropdown -->
+					
+								
+				<!-- Dropdown 
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbardrop"
+				data-toggle="dropdown">Categorie</a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" th:href="@{formCategorie}">Ajouter</a> <a
+						class="dropdown-item" href="#">Chercher</a>
+				</div></li>
+				-->
+		</ul>
+		<ul class="navbar-nav ml-auto">
+			<!-- Dropdown -->
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbardrop"
+				data-toggle="dropdown">
+				<span sec:authorized="isAuthenticated()">
+				<span sec:authentication="name"></span>
+				</span>
+				<span sec:authorized="!isAuthenticated()">
+				<span>LOGIN</span>
+				</span></a>
+				<div class="dropdown-menu">
+					<a  sec:authorize="isAnonymous()" class="dropdown-item" th:href="@{login}">Login</a> 
+					<a sec:authorize="isAuthenticated()" class="dropdown-item" th:href="@{logout}">Logout</a> <a
+						class="dropdown-item" href="#">Profile</a>
+				</div></li>
+		</ul>
+	</nav>
+	<section layout:fragment="pageContent"></section>
+</body>
+</html>
